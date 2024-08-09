@@ -5,7 +5,7 @@ import routes from "./app/routes.js";
 
 app.use(express.json());
 
-routes(app);
+routes(app, {});
 
 app.listen(PORT, () => {
     console.log(`Server is running at port ${PORT}`);

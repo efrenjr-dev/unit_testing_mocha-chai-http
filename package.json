@@ -5,7 +5,8 @@
     "main": "server.js",
     "type": "module",
     "scripts": {
-        "test": "mocha --recursive",
+        "test": "mocha --recursive --exit",
+        "devtest": "nodemon server.js .exec mocha --recursive",
         "dev": "nodemon server.js",
         "specifictest": "mocha -g"
     },

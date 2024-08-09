@@ -50,16 +50,20 @@ export default function (app) {
                 error: "Bad Request: ALIAS should not be an empty string",
             });
         }
+        let duplicateAlias = false;
         Object.values(exchangeRates).forEach((currency) => {
             if (currency.alias === req.body.alias) {
+                duplicateAlias = true;
                 return res.status(400).send({
                     error: "Bad Request: fields are complete but ALIAS should not be duplicate",
                 });
             }
         });
-        return res.status(200).send({
-            status: "Success: field are complete and there is no duplicate",
-        });
+        if (!duplicateAlias) {
+            return res.status(200).send({
+                status: "Success: field are complete and there is no duplicate",
+            });
+        }
     });
 }
 
