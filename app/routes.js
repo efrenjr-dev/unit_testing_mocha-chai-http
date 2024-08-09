@@ -40,7 +40,7 @@ export default function (app) {
                 error: "Bad Request: missing required parameter ALIAS",
             });
         }
-        if (typeof req.body.alias !== "string    ") {
+        if (typeof req.body.alias !== "string") {
             return res
                 .status(400)
                 .send({ error: "Bad Request: ALIAS has to be a string" });
@@ -50,16 +50,21 @@ export default function (app) {
                 error: "Bad Request: ALIAS should not be an empty string",
             });
         }
+        Object.values(exchangeRates).forEach((currency) => {
+            if (currency.alias === req.body.alias) {
+                return res.status(400).send({
+                    error: "Bad Request: fields are complete but ALIAS should not be duplicate",
+                });
+            }
+        });
+        return res.status(200).send({
+            status: "Success: field are complete and there is no duplicate",
+        });
     });
 }
 
 /*
 
-
-
-error: "Bad Request : ALIAS has to be a string",
-
-error: "Bad Request : ALIAS should not be an empty string",
 
       "Bad Request : fields are complete but ALIAS should not be duplicate",
 
