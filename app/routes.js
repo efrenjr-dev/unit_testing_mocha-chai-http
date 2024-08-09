@@ -1,6 +1,6 @@
 import { exchangeRates } from "../src/util.js";
 
-export default function (app) {
+export default (app) => {
     app.get("/currency", (req, res) => {
         res.status(200).send({ currencies: exchangeRates });
     });
@@ -65,7 +65,7 @@ export default function (app) {
             });
         }
     });
-}
+};
 
 /*
 
